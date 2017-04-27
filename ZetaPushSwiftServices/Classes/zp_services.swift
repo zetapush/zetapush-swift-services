@@ -111,7 +111,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "update", parameters: parameter)
 	}
 }
-public class StackListener : ZetaPushServiceListener {
+open class StackListener : ZetaPushServiceListener {
 
 	// Listener for "getListeners"
 	open func on_getListeners(_ parameter: StackListeners) { }
@@ -127,7 +127,7 @@ public class StackListener : ZetaPushServiceListener {
 	open func on_setListeners(_ parameter: StackListeners) { }
 	// Listener for "update"
 	open func on_update(_ parameter: StackItemAdd) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "getListeners") { (data) in
 			self.on_getListeners(data)
 		}
@@ -172,11 +172,11 @@ public class EchoPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "echo", parameters: parameter)
 	}
 }
-public class EchoListener : ZetaPushServiceListener {
+open class EchoListener : ZetaPushServiceListener {
 
 	// Listener for "echo"
 	open func on_echo(_ parameter: NSDictionary) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "echo") { (data) in
 			self.on_echo(data)
 		}
@@ -188,6 +188,52 @@ public class EchoListener : ZetaPushServiceListener {
  * Abstract Game Engine
  *  Concrete game engines are remote cometd clients or internal macros
  * */
+/**
+ * User API for games
+ * 
+ * Users can list, start, join games, and play.
+ * @access public
+ * */
+public class GamePublisher : ZetaPushServicePublisher {
+	/**
+	 * Lists game types
+	 * 
+	 * Returns the list of game types supported by the server and the currently registered game engines.
+	 * */
+	func available() {
+		self.zetaPushService.publishGeneric(verb: "available")
+	}
+	/**A user joins a game*/
+	func join(parameter: GameJoin) {
+		self.zetaPushService.publishGeneric(verb: "join", parameters: parameter)
+	}
+	/**Organizes a game*/
+	func organize(parameter: GameOrganization) {
+		self.zetaPushService.publishGeneric(verb: "organize", parameters: parameter)
+	}
+	/**Gives some command to the game engine*/
+	func play(parameter: GamePlay) {
+		self.zetaPushService.publishGeneric(verb: "play", parameters: parameter)
+	}
+	/**Starts a game*/
+	func start(parameter: GameStart) {
+		self.zetaPushService.publishGeneric(verb: "start", parameters: parameter)
+	}
+	/**A user cancels joining a game*/
+	func unjoin(parameter: GameJoin) {
+		self.zetaPushService.publishGeneric(verb: "unjoin", parameters: parameter)
+	}
+}
+open class GameListener : ZetaPushServiceListener {
+
+	// Listener for "available"
+	open func on_available(_ parameter: [GameInfo]) { }
+	open override func register() {
+		self.genericSubscribe(verb: "available") { (data) in
+			self.on_available(data)
+		}
+	}
+}
 /**
  * Game Engine API
  * 
@@ -244,52 +290,6 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * */
 	func unjoin_result(parameter: GameJoinResponse) {
 		self.zetaPushService.publishGeneric(verb: "unjoin_result", parameters: parameter)
-	}
-}
-/**
- * User API for games
- * 
- * Users can list, start, join games, and play.
- * @access public
- * */
-public class GamePublisher : ZetaPushServicePublisher {
-	/**
-	 * Lists game types
-	 * 
-	 * Returns the list of game types supported by the server and the currently registered game engines.
-	 * */
-	func available() {
-		self.zetaPushService.publishGeneric(verb: "available")
-	}
-	/**A user joins a game*/
-	func join(parameter: GameJoin) {
-		self.zetaPushService.publishGeneric(verb: "join", parameters: parameter)
-	}
-	/**Organizes a game*/
-	func organize(parameter: GameOrganization) {
-		self.zetaPushService.publishGeneric(verb: "organize", parameters: parameter)
-	}
-	/**Gives some command to the game engine*/
-	func play(parameter: GamePlay) {
-		self.zetaPushService.publishGeneric(verb: "play", parameters: parameter)
-	}
-	/**Starts a game*/
-	func start(parameter: GameStart) {
-		self.zetaPushService.publishGeneric(verb: "start", parameters: parameter)
-	}
-	/**A user cancels joining a game*/
-	func unjoin(parameter: GameJoin) {
-		self.zetaPushService.publishGeneric(verb: "unjoin", parameters: parameter)
-	}
-}
-public class GameListener : ZetaPushServiceListener {
-
-	// Listener for "available"
-	open func on_available(_ parameter: [GameInfo]) { }
-	public override func register() {
-		self.genericSubscribe(verb: "available") { (data) in
-			self.on_available(data)
-		}
 	}
 }
 /**
@@ -407,7 +407,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "removeRow", parameters: parameter)
 	}
 }
-public class GdaListener : ZetaPushServiceListener {
+open class GdaListener : ZetaPushServiceListener {
 
 	// Listener for "get"
 	open func on_get(_ parameter: GdaGetResult) { }
@@ -433,7 +433,7 @@ public class GdaListener : ZetaPushServiceListener {
 	open func on_removeRange(_ parameter: GdaRemoveRange) { }
 	// Listener for "removeRow"
 	open func on_removeRow(_ parameter: GdaRowRequest) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "get") { (data) in
 			self.on_get(data)
 		}
@@ -479,6 +479,73 @@ public class GdaListener : ZetaPushServiceListener {
  *  This is where you can configure rights for any resource
  * 
  * */
+/**
+ * User API for remote control
+ * 
+ * @access public
+ * */
+public class RemotingPublisher : ZetaPushServicePublisher {
+	/**
+	 * Adds a listener
+	 * 
+	 * A user requests notifications from a device owned by anyone who granted him the right authorizations.
+	 * Whenever the device calls 'notify', notifications will be sent to the caller of this verb.
+	 * */
+	func addListener(parameter: RemoteCommand) {
+		self.zetaPushService.publishGeneric(verb: "addListener", parameters: parameter)
+	}
+	/**Response to 'getCapabilities'*/
+	func capabilities(parameter: DeviceCapabilities) {
+		self.zetaPushService.publishGeneric(verb: "capabilities", parameters: parameter)
+	}
+	/**
+	 * Executes a command
+	 * 
+	 * A user executes a command on a device owned by anyone who granted him the right authorizations.
+	 * The command is issued on channel 'command'
+	 * */
+	func execute(parameter: RemoteCommand) {
+		self.zetaPushService.publishGeneric(verb: "execute", parameters: parameter)
+	}
+	/**
+	 * Requests capabilities
+	 * 
+	 * A user requests all his devices for the whole list of their capabilities.
+	 * Devices are expected to answer on channel 'capabilities'
+	 * */
+	func getCapabilities() {
+		self.zetaPushService.publishGeneric(verb: "getCapabilities")
+	}
+	/**
+	 * Notifies of some event
+	 * 
+	 * A device notifies the registered users/devices on this channel.
+	 * The server forwards the notification to said users.
+	 * */
+	func notify(parameter: RemoteCommand) {
+		self.zetaPushService.publishGeneric(verb: "notify", parameters: parameter)
+	}
+	/**
+	 * Pings devices
+	 * 
+	 * A user requests all devices (of all owners) on which he has authorizations to respond on channel 'pong'
+	 * */
+	func ping(parameter: PingRequest) {
+		self.zetaPushService.publishGeneric(verb: "ping", parameters: parameter)
+	}
+	/**Response to ping*/
+	func pong(parameter: DeviceAvailability) {
+		self.zetaPushService.publishGeneric(verb: "pong", parameters: parameter)
+	}
+	/**
+	 * Removes a listener
+	 * 
+	 * A user stops requesting notifications from a device owned by anyone who granted him the right authorizations
+	 * */
+	func removeListener(parameter: RemoteCommand) {
+		self.zetaPushService.publishGeneric(verb: "removeListener", parameters: parameter)
+	}
+}
 /**
  * User API for groups and rights.
  * 
@@ -633,7 +700,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "revoke", parameters: parameter)
 	}
 }
-public class GroupManagementListener : ZetaPushServiceListener {
+open class GroupManagementListener : ZetaPushServiceListener {
 
 	// Listener for "addMe"
 	open func on_addMe(_ parameter: UserGroup) { }
@@ -669,7 +736,7 @@ public class GroupManagementListener : ZetaPushServiceListener {
 	open func on_myGroups(_ parameter: [GroupInfo]) { }
 	// Listener for "revoke"
 	open func on_revoke(_ parameter: Grant) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "addMe") { (data) in
 			self.on_addMe(data)
 		}
@@ -724,73 +791,6 @@ public class GroupManagementListener : ZetaPushServiceListener {
 	}
 }
 /**
- * User API for remote control
- * 
- * @access public
- * */
-public class RemotingPublisher : ZetaPushServicePublisher {
-	/**
-	 * Adds a listener
-	 * 
-	 * A user requests notifications from a device owned by anyone who granted him the right authorizations.
-	 * Whenever the device calls 'notify', notifications will be sent to the caller of this verb.
-	 * */
-	func addListener(parameter: RemoteCommand) {
-		self.zetaPushService.publishGeneric(verb: "addListener", parameters: parameter)
-	}
-	/**Response to 'getCapabilities'*/
-	func capabilities(parameter: DeviceCapabilities) {
-		self.zetaPushService.publishGeneric(verb: "capabilities", parameters: parameter)
-	}
-	/**
-	 * Executes a command
-	 * 
-	 * A user executes a command on a device owned by anyone who granted him the right authorizations.
-	 * The command is issued on channel 'command'
-	 * */
-	func execute(parameter: RemoteCommand) {
-		self.zetaPushService.publishGeneric(verb: "execute", parameters: parameter)
-	}
-	/**
-	 * Requests capabilities
-	 * 
-	 * A user requests all his devices for the whole list of their capabilities.
-	 * Devices are expected to answer on channel 'capabilities'
-	 * */
-	func getCapabilities() {
-		self.zetaPushService.publishGeneric(verb: "getCapabilities")
-	}
-	/**
-	 * Notifies of some event
-	 * 
-	 * A device notifies the registered users/devices on this channel.
-	 * The server forwards the notification to said users.
-	 * */
-	func notify(parameter: RemoteCommand) {
-		self.zetaPushService.publishGeneric(verb: "notify", parameters: parameter)
-	}
-	/**
-	 * Pings devices
-	 * 
-	 * A user requests all devices (of all owners) on which he has authorizations to respond on channel 'pong'
-	 * */
-	func ping(parameter: PingRequest) {
-		self.zetaPushService.publishGeneric(verb: "ping", parameters: parameter)
-	}
-	/**Response to ping*/
-	func pong(parameter: DeviceAvailability) {
-		self.zetaPushService.publishGeneric(verb: "pong", parameters: parameter)
-	}
-	/**
-	 * Removes a listener
-	 * 
-	 * A user stops requesting notifications from a device owned by anyone who granted him the right authorizations
-	 * */
-	func removeListener(parameter: RemoteCommand) {
-		self.zetaPushService.publishGeneric(verb: "removeListener", parameters: parameter)
-	}
-}
-/**
  * HTTP client
  * 
  * Web-service client
@@ -813,11 +813,11 @@ public class HttpclientPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "call", parameters: parameter)
 	}
 }
-public class HttpclientListener : ZetaPushServiceListener {
+open class HttpclientListener : ZetaPushServiceListener {
 
 	// Listener for "call"
 	open func on_call(_ parameter: HttpClientResponse) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "call") { (data) in
 			self.on_call(data)
 		}
@@ -984,11 +984,11 @@ public class QueuePublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "unregister")
 	}
 }
-public class QueueListener : ZetaPushServiceListener {
+open class QueueListener : ZetaPushServiceListener {
 
 	// Listener for "call"
 	open func on_call(_ parameter: TaskCompletion) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "call") { (data) in
 			self.on_call(data)
 		}
@@ -1038,11 +1038,11 @@ public class CronPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "list", parameters: parameter)
 	}
 }
-public class CronListener : ZetaPushServiceListener {
+open class CronListener : ZetaPushServiceListener {
 
 	// Listener for "list"
 	open func on_list(_ parameter: CronPlanning) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "list") { (data) in
 			self.on_list(data)
 		}
@@ -1092,13 +1092,13 @@ public class SearchPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "search", parameters: parameter)
 	}
 }
-public class SearchListener : ZetaPushServiceListener {
+open class SearchListener : ZetaPushServiceListener {
 
 	// Listener for "get"
 	open func on_get(_ parameter: SearchData) { }
 	// Listener for "search"
 	open func on_search(_ parameter: SearchResults) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "get") { (data) in
 			self.on_get(data)
 		}
@@ -1112,6 +1112,46 @@ public class SearchListener : ZetaPushServiceListener {
  * 
  * Simple workflow
  * */
+/**
+ * Simple workflow service : workflow definition API
+ * 
+ * Manage workflow templates.
+ * Consider using the @Workflow annotation to ease configuration.
+ * @access public
+ * */
+public class WorkflowDefinitionServicePublisher : ZetaPushServicePublisher {
+	/**
+	 * Fetches templates
+	 * 
+	 * Returns a existing template, by identifier.
+	 * */
+	func getTemplate(parameter: WorkflowTemplateInfoRequest) {
+		self.zetaPushService.publishGeneric(verb: "getTemplate", parameters: parameter)
+	}
+	/**
+	 * Asks for a list of templates
+	 * 
+	 * Returns a paginated list of templates.
+	 * */
+	func listTemplates(parameter: WorkflowTemplateList) {
+		self.zetaPushService.publishGeneric(verb: "listTemplates", parameters: parameter)
+	}
+}
+open class WorkflowDefinitionServiceListener : ZetaPushServiceListener {
+
+	// Listener for "getTemplate"
+	open func on_getTemplate(_ parameter: WorkflowTemplate) { }
+	// Listener for "listTemplates"
+	open func on_listTemplates(_ parameter: WorkflowTemplateListResult) { }
+	open override func register() {
+		self.genericSubscribe(verb: "getTemplate") { (data) in
+			self.on_getTemplate(data)
+		}
+		self.genericSubscribe(verb: "listTemplates") { (data) in
+			self.on_listTemplates(data)
+		}
+	}
+}
 /**
  * Simple workflow service : workflow usage API
  * 
@@ -1150,7 +1190,7 @@ public class WorkflowServicePublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "transition", parameters: parameter)
 	}
 }
-public class WorkflowServiceListener : ZetaPushServiceListener {
+open class WorkflowServiceListener : ZetaPushServiceListener {
 
 	// Listener for "create"
 	open func on_create(_ parameter: WorkflowInfo) { }
@@ -1160,7 +1200,7 @@ public class WorkflowServiceListener : ZetaPushServiceListener {
 	open func on_list(_ parameter: PageContentWorkflowInfo) { }
 	// Listener for "transition"
 	open func on_transition(_ parameter: WorkflowTransitionRequest) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "create") { (data) in
 			self.on_create(data)
 		}
@@ -1172,46 +1212,6 @@ public class WorkflowServiceListener : ZetaPushServiceListener {
 		}
 		self.genericSubscribe(verb: "transition") { (data) in
 			self.on_transition(data)
-		}
-	}
-}
-/**
- * Simple workflow service : workflow definition API
- * 
- * Manage workflow templates.
- * Consider using the @Workflow annotation to ease configuration.
- * @access public
- * */
-public class WorkflowDefinitionServicePublisher : ZetaPushServicePublisher {
-	/**
-	 * Fetches templates
-	 * 
-	 * Returns a existing template, by identifier.
-	 * */
-	func getTemplate(parameter: WorkflowTemplateInfoRequest) {
-		self.zetaPushService.publishGeneric(verb: "getTemplate", parameters: parameter)
-	}
-	/**
-	 * Asks for a list of templates
-	 * 
-	 * Returns a paginated list of templates.
-	 * */
-	func listTemplates(parameter: WorkflowTemplateList) {
-		self.zetaPushService.publishGeneric(verb: "listTemplates", parameters: parameter)
-	}
-}
-public class WorkflowDefinitionServiceListener : ZetaPushServiceListener {
-
-	// Listener for "getTemplate"
-	open func on_getTemplate(_ parameter: WorkflowTemplate) { }
-	// Listener for "listTemplates"
-	open func on_listTemplates(_ parameter: WorkflowTemplateListResult) { }
-	public override func register() {
-		self.genericSubscribe(verb: "getTemplate") { (data) in
-			self.on_getTemplate(data)
-		}
-		self.genericSubscribe(verb: "listTemplates") { (data) in
-			self.on_listTemplates(data)
 		}
 	}
 }
@@ -1242,11 +1242,11 @@ public class TemplatePublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "evaluate", parameters: parameter)
 	}
 }
-public class TemplateListener : ZetaPushServiceListener {
+open class TemplateListener : ZetaPushServiceListener {
 
 	// Listener for "evaluate"
 	open func on_evaluate(_ parameter: TemplateResult) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "evaluate") { (data) in
 			self.on_evaluate(data)
 		}
@@ -1373,7 +1373,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
-public class Zpfs_s3Listener : ZetaPushServiceListener {
+open class Zpfs_s3Listener : ZetaPushServiceListener {
 
 	// Listener for "cp"
 	open func on_cp(_ parameter: CreatedFile) { }
@@ -1399,7 +1399,7 @@ public class Zpfs_s3Listener : ZetaPushServiceListener {
 	open func on_stat(_ parameter: FileStatResult) { }
 	// Listener for "updateMeta"
 	open func on_updateMeta(_ parameter: ListingEntryInfo) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "cp") { (data) in
 			self.on_cp(data)
 		}
@@ -1550,7 +1550,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
-public class Zpfs_hdfsListener : ZetaPushServiceListener {
+open class Zpfs_hdfsListener : ZetaPushServiceListener {
 
 	// Listener for "cp"
 	open func on_cp(_ parameter: CreatedFile) { }
@@ -1576,7 +1576,7 @@ public class Zpfs_hdfsListener : ZetaPushServiceListener {
 	open func on_stat(_ parameter: FileStatResult) { }
 	// Listener for "updateMeta"
 	open func on_updateMeta(_ parameter: ListingEntryInfo) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "cp") { (data) in
 			self.on_cp(data)
 		}
@@ -1730,7 +1730,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
-public class Zpfs_s3compatListener : ZetaPushServiceListener {
+open class Zpfs_s3compatListener : ZetaPushServiceListener {
 
 	// Listener for "cp"
 	open func on_cp(_ parameter: CreatedFile) { }
@@ -1756,7 +1756,7 @@ public class Zpfs_s3compatListener : ZetaPushServiceListener {
 	open func on_stat(_ parameter: FileStatResult) { }
 	// Listener for "updateMeta"
 	open func on_updateMeta(_ parameter: ListingEntryInfo) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "cp") { (data) in
 			self.on_cp(data)
 		}
@@ -1815,13 +1815,13 @@ public class UserdirPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "userInfo", parameters: parameter)
 	}
 }
-public class UserdirListener : ZetaPushServiceListener {
+open class UserdirListener : ZetaPushServiceListener {
 
 	// Listener for "search"
 	open func on_search(_ parameter: UserSearchResponse) { }
 	// Listener for "userInfo"
 	open func on_userInfo(_ parameter: UserInfoResponse) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "search") { (data) in
 			self.on_search(data)
 		}
@@ -1888,7 +1888,7 @@ public class WeakPublisher : ZetaPushServicePublisher {
 		self.zetaPushService.publishGeneric(verb: "release", parameters: parameter)
 	}
 }
-public class WeakListener : ZetaPushServiceListener {
+open class WeakListener : ZetaPushServiceListener {
 
 	// Listener for "control"
 	open func on_control(_ parameter: UserControlStatus) { }
@@ -1896,7 +1896,7 @@ public class WeakListener : ZetaPushServiceListener {
 	open func on_getToken(_ parameter: UserToken) { }
 	// Listener for "release"
 	open func on_release(_ parameter: UserControlStatus) { }
-	public override func register() {
+	open override func register() {
 		self.genericSubscribe(verb: "control") { (data) in
 			self.on_control(data)
 		}
