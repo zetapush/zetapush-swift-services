@@ -1,0 +1,6 @@
+framework module ZetaPushSwift {
+  umbrella header "ZetaPushSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+use_frameworks!
+target 'ZetaPushSwiftServices_Tests' do
+  pod 'ZetaPushSwiftServices', :path => '../'
+  
+  
+end

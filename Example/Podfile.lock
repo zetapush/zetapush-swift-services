@@ -1,0 +1,52 @@
+PODS:
+  - Gloss (1.2.4)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - PromiseKit (4.2.0):
+    - PromiseKit/Foundation (= 4.2.0)
+    - PromiseKit/QuartzCore (= 4.2.0)
+    - PromiseKit/UIKit (= 4.2.0)
+  - PromiseKit/CorePromise (4.2.0)
+  - PromiseKit/Foundation (4.2.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.0):
+    - PromiseKit/CorePromise
+  - Starscream (2.0.4)
+  - SwiftyJSON (3.1.4)
+  - XCGLogger (5.0.1):
+    - XCGLogger/Core (= 5.0.1)
+  - XCGLogger/Core (5.0.1):
+    - ObjcExceptionBridging
+  - ZetaPushSwift (1.0.3):
+    - Gloss (~> 1.2)
+    - PromiseKit (~> 4.0)
+    - Starscream (~> 2.0)
+    - SwiftyJSON (~> 3.1)
+    - XCGLogger (~> 5.0)
+  - ZetaPushSwiftServices (0.1.0):
+    - Gloss (~> 1.2)
+    - ZetaPushSwift (~> 1.0)
+
+DEPENDENCIES:
+  - ZetaPushSwiftServices (from `../`)
+
+EXTERNAL SOURCES:
+  ZetaPushSwiftServices:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  PromiseKit: 08dfb783c161ddcd95b7912421f14c5113fd8318
+  Starscream: df5974ee928b157c8eda8af8de7c620276b7dfcc
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
+  ZetaPushSwift: cffca59d7d6b1edf9c7c4197954205e79d7f3f4d
+  ZetaPushSwiftServices: fdb2a51456b50c7397d85ce900f5d47d4e948f95
+
+PODFILE CHECKSUM: fdfeee5014b9766b1c50a48dd9ffeda7f82ab962
+
+COCOAPODS: 1.2.1
