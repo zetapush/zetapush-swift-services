@@ -1,6 +1,5 @@
 # ZetaPushSwiftServices
 
-[![CI Status](http://img.shields.io/travis/Morvan Mikael/ZetaPushSwiftServices.svg?style=flat)](https://travis-ci.org/Morvan Mikael/ZetaPushSwiftServices)
 [![Version](https://img.shields.io/cocoapods/v/ZetaPushSwiftServices.svg?style=flat)](http://cocoapods.org/pods/ZetaPushSwiftServices)
 [![License](https://img.shields.io/cocoapods/l/ZetaPushSwiftServices.svg?style=flat)](http://cocoapods.org/pods/ZetaPushSwiftServices)
 [![Platform](https://img.shields.io/cocoapods/p/ZetaPushSwiftServices.svg?style=flat)](http://cocoapods.org/pods/ZetaPushSwiftServices)
