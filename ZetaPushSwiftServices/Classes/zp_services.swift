@@ -32,7 +32,7 @@ public class AggregPublisher : ZetaPushServicePublisher {
 	 * All the items are processed according to the defined rules.
 	 * At least one push for a given item is needed during a time period to trigger processing and calling of the corresponding callback verb/macro.
 	 * */
-	func push(parameter: AggregationPushes) {
+	public func push(parameter: AggregationPushes) {
 		self.zetaPushService.publishGeneric(verb: "push", parameters: parameter)
 	}
 }
@@ -56,7 +56,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns the whole list of listeners for the given stack.
 	 * */
-	func getListeners(parameter: StackRequest) {
+	public func getListeners(parameter: StackRequest) {
 		self.zetaPushService.publishGeneric(verb: "getListeners", parameters: parameter)
 	}
 	/**
@@ -65,7 +65,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * Returns a paginated list of contents for the given stack.
 	 * Content is sorted according to the statically configured order.
 	 * */
-	func list(parameter: StackListRequest) {
+	public func list(parameter: StackListRequest) {
 		self.zetaPushService.publishGeneric(verb: "list", parameters: parameter)
 	}
 	/**
@@ -73,7 +73,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes all items from the given stack.
 	 * */
-	func purge(parameter: StackRequest) {
+	public func purge(parameter: StackRequest) {
 		self.zetaPushService.publishGeneric(verb: "purge", parameters: parameter)
 	}
 	/**
@@ -82,7 +82,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * Pushes an item onto the given stack.
 	 * The stack does not need to be created.
 	 * */
-	func push(parameter: StackItemAdd) {
+	public func push(parameter: StackItemAdd) {
 		self.zetaPushService.publishGeneric(verb: "push", parameters: parameter)
 	}
 	/**
@@ -90,7 +90,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes the item with the given guid from the given stack.
 	 * */
-	func remove(parameter: StackItemRemove) {
+	public func remove(parameter: StackItemRemove) {
 		self.zetaPushService.publishGeneric(verb: "remove", parameters: parameter)
 	}
 	/**
@@ -98,7 +98,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Sets the listeners for the given stack.
 	 * */
-	func setListeners(parameter: StackListeners) {
+	public func setListeners(parameter: StackListeners) {
 		self.zetaPushService.publishGeneric(verb: "setListeners", parameters: parameter)
 	}
 	/**
@@ -107,7 +107,7 @@ public class StackPublisher : ZetaPushServicePublisher {
 	 * Updates an existing item of the given stack.
 	 * The item MUST exist prior to the call.
 	 * */
-	func update(parameter: StackItemAdd) {
+	public func update(parameter: StackItemAdd) {
 		self.zetaPushService.publishGeneric(verb: "update", parameters: parameter)
 	}
 }
@@ -168,7 +168,7 @@ public class EchoPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Echoes an object: the server will echo that object on channel 'echo' for the current user.
 	 * */
-	func echo(parameter: NSDictionary) {
+	public func echo(parameter: NSDictionary) {
 		self.zetaPushService.publishGeneric(verb: "echo", parameters: parameter)
 	}
 }
@@ -200,27 +200,27 @@ public class GamePublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns the list of game types supported by the server and the currently registered game engines.
 	 * */
-	func available() {
+	public func available() {
 		self.zetaPushService.publishGeneric(verb: "available")
 	}
 	/**A user joins a game*/
-	func join(parameter: GameJoin) {
+	public func join(parameter: GameJoin) {
 		self.zetaPushService.publishGeneric(verb: "join", parameters: parameter)
 	}
 	/**Organizes a game*/
-	func organize(parameter: GameOrganization) {
+	public func organize(parameter: GameOrganization) {
 		self.zetaPushService.publishGeneric(verb: "organize", parameters: parameter)
 	}
 	/**Gives some command to the game engine*/
-	func play(parameter: GamePlay) {
+	public func play(parameter: GamePlay) {
 		self.zetaPushService.publishGeneric(verb: "play", parameters: parameter)
 	}
 	/**Starts a game*/
-	func start(parameter: GameStart) {
+	public func start(parameter: GameStart) {
 		self.zetaPushService.publishGeneric(verb: "start", parameters: parameter)
 	}
 	/**A user cancels joining a game*/
-	func unjoin(parameter: GameJoin) {
+	public func unjoin(parameter: GameJoin) {
 		self.zetaPushService.publishGeneric(verb: "unjoin", parameters: parameter)
 	}
 }
@@ -246,7 +246,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * 
 	 * A Game Engine notifies the STR of the result of a join request that it received on join_callback
 	 * */
-	func join_result(parameter: GameJoinResponse) {
+	public func join_result(parameter: GameJoinResponse) {
 		self.zetaPushService.publishGeneric(verb: "join_result", parameters: parameter)
 	}
 	/**
@@ -254,7 +254,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * 
 	 * A Game Engine notifies the STR of the result of an organization request that it received on organize_callback
 	 * */
-	func organize_result(parameter: GameOrganizationResponse) {
+	public func organize_result(parameter: GameOrganizationResponse) {
 		self.zetaPushService.publishGeneric(verb: "organize_result", parameters: parameter)
 	}
 	/**
@@ -264,7 +264,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * The STR may, from now on, dispatch game of the given game type to said client.
 	 * Unregistration is done automatically on logoff.
 	 * */
-	func register(parameter: GameRunnerRegistration) {
+	public func register(parameter: GameRunnerRegistration) {
 		self.zetaPushService.publishGeneric(verb: "register", parameters: parameter)
 	}
 	/**
@@ -272,7 +272,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * 
 	 * A Game Engine notifies the STR of the result of a start request that it received on start_callback
 	 * */
-	func start_result(parameter: GameStart) {
+	public func start_result(parameter: GameStart) {
 		self.zetaPushService.publishGeneric(verb: "start_result", parameters: parameter)
 	}
 	/**
@@ -280,7 +280,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * 
 	 * A Game Engine notifies the STR of some arbitrary game event.
 	 * */
-	func state(parameter: GameState) {
+	public func state(parameter: GameState) {
 		self.zetaPushService.publishGeneric(verb: "state", parameters: parameter)
 	}
 	/**
@@ -288,7 +288,7 @@ public class GameEnginePublisher : ZetaPushServicePublisher {
 	 * 
 	 * A Game Engine notifies the STR of the result of an unjoin request that it received on unjoin_callback
 	 * */
-	func unjoin_result(parameter: GameJoinResponse) {
+	public func unjoin_result(parameter: GameJoinResponse) {
 		self.zetaPushService.publishGeneric(verb: "unjoin_result", parameters: parameter)
 	}
 }
@@ -311,7 +311,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a full data row.
 	 * */
-	func get(parameter: GdaGet) {
+	public func get(parameter: GdaGet) {
 		self.zetaPushService.publishGeneric(verb: "get", parameters: parameter)
 	}
 	/**
@@ -319,7 +319,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a precise list of cells from a column in a data row.
 	 * */
-	func getCells(parameter: GdaCellsRequest) {
+	public func getCells(parameter: GdaCellsRequest) {
 		self.zetaPushService.publishGeneric(verb: "getCells", parameters: parameter)
 	}
 	/**
@@ -328,7 +328,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * Increments a cell 64-bit signed integer value and returns the result in the data field.
 	 * The increment is atomic : if you concurrently increment 10 times a value by 1, the final result will be the initial value plus 10. The actual individual resulting values seen by the 10 concurrent callers may vary discontinuously, with duplicates : at least one of them will see the final (+10) result.
 	 * */
-	func inc(parameter: GdaPut) {
+	public func inc(parameter: GdaPut) {
 		self.zetaPushService.publishGeneric(verb: "inc", parameters: parameter)
 	}
 	/**
@@ -336,7 +336,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of rows from the given table.
 	 * */
-	func list(parameter: GdaList) {
+	public func list(parameter: GdaList) {
 		self.zetaPushService.publishGeneric(verb: "list", parameters: parameter)
 	}
 	/**
@@ -344,7 +344,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns full data rows, in the order they were asked.
 	 * */
-	func mget(parameter: GdaMultiGetRequest) {
+	public func mget(parameter: GdaMultiGetRequest) {
 		self.zetaPushService.publishGeneric(verb: "mget", parameters: parameter)
 	}
 	/**
@@ -352,7 +352,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Creates or replaces the contents of a particular cell.
 	 * */
-	func put(parameter: GdaPut) {
+	public func put(parameter: GdaPut) {
 		self.zetaPushService.publishGeneric(verb: "put", parameters: parameter)
 	}
 	/**
@@ -361,7 +361,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * Creates or replaces the (maybe partial) contents of a collection of rows.
 	 * This method only creates or replaces cells for non-null input values.
 	 * */
-	func puts(parameter: GdaPuts) {
+	public func puts(parameter: GdaPuts) {
 		self.zetaPushService.publishGeneric(verb: "puts", parameters: parameter)
 	}
 	/**
@@ -371,7 +371,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * A range consists of consecutive rows from the start key (inclusive) to the stop key (exclusive).
 	 * You can specify partial keys for the start and stop fields.
 	 * */
-	func range(parameter: GdaRange) {
+	public func range(parameter: GdaRange) {
 		self.zetaPushService.publishGeneric(verb: "range", parameters: parameter)
 	}
 	/**
@@ -379,7 +379,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes only one cell of the given column of the given row from the given table.
 	 * */
-	func removeCell(parameter: GdaCellRequest) {
+	public func removeCell(parameter: GdaCellRequest) {
 		self.zetaPushService.publishGeneric(verb: "removeCell", parameters: parameter)
 	}
 	/**
@@ -387,7 +387,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes all cells of the given column of the given row from the given table.
 	 * */
-	func removeColumn(parameter: GdaColumnRequest) {
+	public func removeColumn(parameter: GdaColumnRequest) {
 		self.zetaPushService.publishGeneric(verb: "removeColumn", parameters: parameter)
 	}
 	/**
@@ -395,7 +395,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes the specified columns of the given range of rows from the given table.
 	 * */
-	func removeRange(parameter: GdaRemoveRange) {
+	public func removeRange(parameter: GdaRemoveRange) {
 		self.zetaPushService.publishGeneric(verb: "removeRange", parameters: parameter)
 	}
 	/**
@@ -403,7 +403,7 @@ public class GdaPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes all columns of the given row from the given table.
 	 * */
-	func removeRow(parameter: GdaRowRequest) {
+	public func removeRow(parameter: GdaRowRequest) {
 		self.zetaPushService.publishGeneric(verb: "removeRow", parameters: parameter)
 	}
 }
@@ -491,11 +491,11 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * A user requests notifications from a device owned by anyone who granted him the right authorizations.
 	 * Whenever the device calls 'notify', notifications will be sent to the caller of this verb.
 	 * */
-	func addListener(parameter: RemoteCommand) {
+	public func addListener(parameter: RemoteCommand) {
 		self.zetaPushService.publishGeneric(verb: "addListener", parameters: parameter)
 	}
 	/**Response to 'getCapabilities'*/
-	func capabilities(parameter: DeviceCapabilities) {
+	public func capabilities(parameter: DeviceCapabilities) {
 		self.zetaPushService.publishGeneric(verb: "capabilities", parameters: parameter)
 	}
 	/**
@@ -504,7 +504,7 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * A user executes a command on a device owned by anyone who granted him the right authorizations.
 	 * The command is issued on channel 'command'
 	 * */
-	func execute(parameter: RemoteCommand) {
+	public func execute(parameter: RemoteCommand) {
 		self.zetaPushService.publishGeneric(verb: "execute", parameters: parameter)
 	}
 	/**
@@ -513,7 +513,7 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * A user requests all his devices for the whole list of their capabilities.
 	 * Devices are expected to answer on channel 'capabilities'
 	 * */
-	func getCapabilities() {
+	public func getCapabilities() {
 		self.zetaPushService.publishGeneric(verb: "getCapabilities")
 	}
 	/**
@@ -522,7 +522,7 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * A device notifies the registered users/devices on this channel.
 	 * The server forwards the notification to said users.
 	 * */
-	func notify(parameter: RemoteCommand) {
+	public func notify(parameter: RemoteCommand) {
 		self.zetaPushService.publishGeneric(verb: "notify", parameters: parameter)
 	}
 	/**
@@ -530,11 +530,11 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * 
 	 * A user requests all devices (of all owners) on which he has authorizations to respond on channel 'pong'
 	 * */
-	func ping(parameter: PingRequest) {
+	public func ping(parameter: PingRequest) {
 		self.zetaPushService.publishGeneric(verb: "ping", parameters: parameter)
 	}
 	/**Response to ping*/
-	func pong(parameter: DeviceAvailability) {
+	public func pong(parameter: DeviceAvailability) {
 		self.zetaPushService.publishGeneric(verb: "pong", parameters: parameter)
 	}
 	/**
@@ -542,7 +542,7 @@ public class RemotingPublisher : ZetaPushServicePublisher {
 	 * 
 	 * A user stops requesting notifications from a device owned by anyone who granted him the right authorizations
 	 * */
-	func removeListener(parameter: RemoteCommand) {
+	public func removeListener(parameter: RemoteCommand) {
 		self.zetaPushService.publishGeneric(verb: "removeListener", parameters: parameter)
 	}
 }
@@ -562,7 +562,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * This verb exists so that group owners may grant the right to join their groups without granting the right to add other users to those groups.
 	 * The 'user' field is implicitly set to the current user's key.
 	 * */
-	func addMe(parameter: UserGroup) {
+	public func addMe(parameter: UserGroup) {
 		self.zetaPushService.publishGeneric(verb: "addMe", parameters: parameter)
 	}
 	/**
@@ -571,11 +571,11 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * Adds the given user to the given group.
 	 * Addition may fail if the given group does not already exist.
 	 * */
-	func addUser(parameter: UserGroup) {
+	public func addUser(parameter: UserGroup) {
 		self.zetaPushService.publishGeneric(verb: "addUser", parameters: parameter)
 	}
 	/**Adds users to a group*/
-	func addUsers(parameter: GroupUsers) {
+	public func addUsers(parameter: GroupUsers) {
 		self.zetaPushService.publishGeneric(verb: "addUsers", parameters: parameter)
 	}
 	/**
@@ -583,7 +583,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns the whole list of groups owned by the current user, with their members
 	 * */
-	func allGroups(parameter: ImpersonatedRequest) {
+	public func allGroups(parameter: ImpersonatedRequest) {
 		self.zetaPushService.publishGeneric(verb: "allGroups", parameters: parameter)
 	}
 	/**
@@ -592,7 +592,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * Creates a group owned by the current user.
 	 * Group creation may fail if the group already exists.
 	 * */
-	func createGroup(parameter: GroupInfo) {
+	public func createGroup(parameter: GroupInfo) {
 		self.zetaPushService.publishGeneric(verb: "createGroup", parameters: parameter)
 	}
 	/**
@@ -601,15 +601,15 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * Removes the given group owned by the current user or the given owner.
 	 * Also removes all grants to that group.
 	 * */
-	func delGroup(parameter: GroupRelated) {
+	public func delGroup(parameter: GroupRelated) {
 		self.zetaPushService.publishGeneric(verb: "delGroup", parameters: parameter)
 	}
 	/**Removes a user from a group*/
-	func delUser(parameter: UserGroup) {
+	public func delUser(parameter: UserGroup) {
 		self.zetaPushService.publishGeneric(verb: "delUser", parameters: parameter)
 	}
 	/**Removes users from a group*/
-	func delUsers(parameter: GroupUsers) {
+	public func delUsers(parameter: GroupUsers) {
 		self.zetaPushService.publishGeneric(verb: "delUsers", parameters: parameter)
 	}
 	/**
@@ -617,7 +617,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns whether a group exists or not.
 	 * */
-	func exists(parameter: GroupRelated) {
+	public func exists(parameter: GroupRelated) {
 		self.zetaPushService.publishGeneric(verb: "exists", parameters: parameter)
 	}
 	/**
@@ -626,7 +626,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * The granting API does not do any check when storing permissions.
 	 * In particular when granting rights on a verb and resource of another API, the existence of said verb and resource is not checked.
 	 * */
-	func grant(parameter: Grant) {
+	public func grant(parameter: Grant) {
 		self.zetaPushService.publishGeneric(verb: "grant", parameters: parameter)
 	}
 	/**
@@ -634,7 +634,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns the whole list of users configured inside the given group.
 	 * */
-	func groupUsers(parameter: GroupRelated) {
+	public func groupUsers(parameter: GroupRelated) {
 		self.zetaPushService.publishGeneric(verb: "groupUsers", parameters: parameter)
 	}
 	/**
@@ -642,7 +642,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns the whole list of groups owned by the current user
 	 * */
-	func groups(parameter: ImpersonatedRequest) {
+	public func groups(parameter: ImpersonatedRequest) {
 		self.zetaPushService.publishGeneric(verb: "groups", parameters: parameter)
 	}
 	/**
@@ -651,7 +651,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * This API lists explicitly configured rights.
 	 * Effective rights include configured rights, implicit rights and inherited rights.
 	 * */
-	func listGrants(parameter: GroupRelated) {
+	public func listGrants(parameter: GroupRelated) {
 		self.zetaPushService.publishGeneric(verb: "listGrants", parameters: parameter)
 	}
 	/**
@@ -661,7 +661,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * The current implementation does not include information about the particular devices users are connected with.
 	 * If a user is connected twice with two different devices, two identical entries will be returned.
 	 * */
-	func listPresences(parameter: GroupRelated) {
+	public func listPresences(parameter: GroupRelated) {
 		self.zetaPushService.publishGeneric(verb: "listPresences", parameters: parameter)
 	}
 	/**
@@ -671,7 +671,7 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * This verb exists so that users can determine if they are part of a group without being granted particular rights.
 	 * The 'user' field is implicitly set to the current user's key.
 	 * */
-	func memberOf(parameter: UserMembership) {
+	public func memberOf(parameter: UserMembership) {
 		self.zetaPushService.publishGeneric(verb: "memberOf", parameters: parameter)
 	}
 	/**
@@ -679,11 +679,11 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Grant several rights at once.
 	 * */
-	func mgrant(parameter: Grants) {
+	public func mgrant(parameter: Grants) {
 		self.zetaPushService.publishGeneric(verb: "mgrant", parameters: parameter)
 	}
 	/**Revokes rights for a group*/
-	func mrevoke(parameter: Grants) {
+	public func mrevoke(parameter: Grants) {
 		self.zetaPushService.publishGeneric(verb: "mrevoke", parameters: parameter)
 	}
 	/**
@@ -692,11 +692,11 @@ public class GroupManagementPublisher : ZetaPushServicePublisher {
 	 * Returns the whole list of groups the current user is part of.
 	 * Groups may be owned by anyone, including the current user.
 	 * */
-	func myGroups(parameter: ImpersonatedRequest) {
+	public func myGroups(parameter: ImpersonatedRequest) {
 		self.zetaPushService.publishGeneric(verb: "myGroups", parameters: parameter)
 	}
 	/**Revokes a right for a group*/
-	func revoke(parameter: Grant) {
+	public func revoke(parameter: Grant) {
 		self.zetaPushService.publishGeneric(verb: "revoke", parameters: parameter)
 	}
 }
@@ -809,7 +809,7 @@ public class HttpclientPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Lookups a predefined request by name, and executes it.
 	 * */
-	func call(parameter: HttpClientCall) {
+	public func call(parameter: HttpClientCall) {
 		self.zetaPushService.publishGeneric(verb: "call", parameters: parameter)
 	}
 }
@@ -848,7 +848,7 @@ public class MacroPublisher : ZetaPushServicePublisher {
 	 * DO NOT use this verb from inside an enclosing macro when you need the result in order to proceed with the enclosing macro.
 	 * You can override the default notification channel when defining the macro.
 	 * */
-	func call(parameter: MacroPlay) {
+	public func call(parameter: MacroPlay) {
 		self.zetaPushService.publishGeneric(verb: "call", parameters: parameter)
 	}
 }
@@ -861,11 +861,11 @@ public class MacroPublisher : ZetaPushServicePublisher {
  * */
 public class MacroDebugPublisher : ZetaPushServicePublisher {
 	/**Enables or disables a breakpoint*/
-	func breakpoint(parameter: MacroDebugBreakpointSet) {
+	public func breakpoint(parameter: MacroDebugBreakpointSet) {
 		self.zetaPushService.publishGeneric(verb: "breakpoint", parameters: parameter)
 	}
 	/**Requests some information*/
-	func info(parameter: MacroDebugInfoRequest) {
+	public func info(parameter: MacroDebugInfoRequest) {
 		self.zetaPushService.publishGeneric(verb: "info", parameters: parameter)
 	}
 	/**
@@ -874,15 +874,15 @@ public class MacroDebugPublisher : ZetaPushServicePublisher {
 	 * The given breakpoints will be honored, causing a suspension of the execution, resumable via 'resume'.
 	 * Only one debug session can be active at any given time.
 	 * */
-	func livedebug(parameter: MacroDebugSession) {
+	public func livedebug(parameter: MacroDebugSession) {
 		self.zetaPushService.publishGeneric(verb: "livedebug", parameters: parameter)
 	}
 	/**Resumes a paused macro*/
-	func resume(parameter: MacroDebugStep) {
+	public func resume(parameter: MacroDebugStep) {
 		self.zetaPushService.publishGeneric(verb: "resume", parameters: parameter)
 	}
 	/**Sets a variable value*/
-	func variable(parameter: MacroDebugVariableChange) {
+	public func variable(parameter: MacroDebugVariableChange) {
 		self.zetaPushService.publishGeneric(verb: "variable", parameters: parameter)
 	}
 }
@@ -909,7 +909,7 @@ public class MessagingPublisher : ZetaPushServicePublisher {
 	 * Sends the given message to the specified target on the given (optional) channel.
 	 * The administratively given default channel name is used when none is provided in the message itself.
 	 * */
-	func send(parameter: Message) {
+	public func send(parameter: Message) {
 		self.zetaPushService.publishGeneric(verb: "send", parameters: parameter)
 	}
 }
@@ -938,7 +938,7 @@ public class QueuePublisher : ZetaPushServicePublisher {
 	 * The task result will be returned to the caller.
 	 * When called from inside a macro, the comsumer generated result is available for further use.
 	 * */
-	func call(parameter: TaskRequest) {
+	public func call(parameter: TaskRequest) {
 		self.zetaPushService.publishGeneric(verb: "call", parameters: parameter)
 	}
 	/**
@@ -948,7 +948,7 @@ public class QueuePublisher : ZetaPushServicePublisher {
 	 * The tasker notifies completion of the given task to the server.
 	 * The tasker can optionally include a result or an error code.
 	 * */
-	func done(parameter: TaskCompletion) {
+	public func done(parameter: TaskCompletion) {
 		self.zetaPushService.publishGeneric(verb: "done", parameters: parameter)
 	}
 	/**
@@ -958,7 +958,7 @@ public class QueuePublisher : ZetaPushServicePublisher {
 	 * Registers the current user resource as an available task consumer.
 	 * Tasks will be then dispatched to that consumer.
 	 * */
-	func register(parameter: TaskConsumerRegistration) {
+	public func register(parameter: TaskConsumerRegistration) {
 		self.zetaPushService.publishGeneric(verb: "register", parameters: parameter)
 	}
 	/**
@@ -970,7 +970,7 @@ public class QueuePublisher : ZetaPushServicePublisher {
 	 * The task result will be ignored : the producer will not receive any notification of any kind, even in case of errors (including capacity exceeded errors).
 	 * This verb will return immediately : you can use this API to asynchronously submit a task.
 	 * */
-	func submit(parameter: TaskRequest) {
+	public func submit(parameter: TaskRequest) {
 		self.zetaPushService.publishGeneric(verb: "submit", parameters: parameter)
 	}
 	/**
@@ -980,7 +980,7 @@ public class QueuePublisher : ZetaPushServicePublisher {
 	 * Unregisters the current user resource as an available task consumer.
 	 * All non finished tasks are returned to the server.
 	 * */
-	func unregister() {
+	public func unregister() {
 		self.zetaPushService.publishGeneric(verb: "unregister")
 	}
 }
@@ -1034,7 +1034,7 @@ public class CronPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of the asking user's tasks.
 	 * */
-	func list(parameter: CronTaskListRequest) {
+	public func list(parameter: CronTaskListRequest) {
 		self.zetaPushService.publishGeneric(verb: "list", parameters: parameter)
 	}
 }
@@ -1068,7 +1068,7 @@ public class SearchPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Deletes a document from the elasticsearch engine by id.
 	 * */
-	func delete(parameter: SearchDocumentId) {
+	public func delete(parameter: SearchDocumentId) {
 		self.zetaPushService.publishGeneric(verb: "delete", parameters: parameter)
 	}
 	/**
@@ -1076,7 +1076,7 @@ public class SearchPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Retrieves a document from the elasticsearch engine by id.
 	 * */
-	func get(parameter: SearchDocumentId) {
+	public func get(parameter: SearchDocumentId) {
 		self.zetaPushService.publishGeneric(verb: "get", parameters: parameter)
 	}
 	/**
@@ -1084,11 +1084,11 @@ public class SearchPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Inserts or updates a document into the elasticsearch engine.
 	 * */
-	func index(parameter: SearchData) {
+	public func index(parameter: SearchData) {
 		self.zetaPushService.publishGeneric(verb: "index", parameters: parameter)
 	}
 	/**Searches for data*/
-	func search(parameter: SearchRequest) {
+	public func search(parameter: SearchRequest) {
 		self.zetaPushService.publishGeneric(verb: "search", parameters: parameter)
 	}
 }
@@ -1125,7 +1125,7 @@ public class WorkflowDefinitionServicePublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a existing template, by identifier.
 	 * */
-	func getTemplate(parameter: WorkflowTemplateInfoRequest) {
+	public func getTemplate(parameter: WorkflowTemplateInfoRequest) {
 		self.zetaPushService.publishGeneric(verb: "getTemplate", parameters: parameter)
 	}
 	/**
@@ -1133,7 +1133,7 @@ public class WorkflowDefinitionServicePublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of templates.
 	 * */
-	func listTemplates(parameter: WorkflowTemplateList) {
+	public func listTemplates(parameter: WorkflowTemplateList) {
 		self.zetaPushService.publishGeneric(verb: "listTemplates", parameters: parameter)
 	}
 }
@@ -1161,7 +1161,7 @@ open class WorkflowDefinitionServiceListener : ZetaPushServiceListener {
  * */
 public class WorkflowServicePublisher : ZetaPushServicePublisher {
 	/**Creates a new workflow.*/
-	func create(parameter: WorkflowCreationRequest) {
+	public func create(parameter: WorkflowCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "create", parameters: parameter)
 	}
 	/**
@@ -1171,11 +1171,11 @@ public class WorkflowServicePublisher : ZetaPushServicePublisher {
 	 * Theoretically forbidden transitions are authorized.
 	 * Otherwise, this verb behaves as 'transition'
 	 * */
-	func forceTransition(parameter: WorkflowTransitionRequest) {
+	public func forceTransition(parameter: WorkflowTransitionRequest) {
 		self.zetaPushService.publishGeneric(verb: "forceTransition", parameters: parameter)
 	}
 	/**Lists this user's workflows.*/
-	func list(parameter: WorkflowList) {
+	public func list(parameter: WorkflowList) {
 		self.zetaPushService.publishGeneric(verb: "list", parameters: parameter)
 	}
 	/**
@@ -1186,7 +1186,7 @@ public class WorkflowServicePublisher : ZetaPushServicePublisher {
 	 * The transition is synchronous if and only if it triggers a macro (use the @Workflow ZMS annotation).
 	 * The data passed to the macro has the type 'WorkflowTransitionInfo'
 	 * */
-	func transition(parameter: WorkflowTransitionRequest) {
+	public func transition(parameter: WorkflowTransitionRequest) {
 		self.zetaPushService.publishGeneric(verb: "transition", parameters: parameter)
 	}
 }
@@ -1238,7 +1238,7 @@ public class TemplatePublisher : ZetaPushServicePublisher {
 	 * Evaluates the given template and returns the result as a string.
 	 * Templates are parsed the first time they are evaluated. Evaluation may fail early due to a parsing error.
 	 * */
-	func evaluate(parameter: TemplateRequest) {
+	public func evaluate(parameter: TemplateRequest) {
 		self.zetaPushService.publishGeneric(verb: "evaluate", parameters: parameter)
 	}
 }
@@ -1279,7 +1279,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Copies a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func cp(parameter: CreatedFile) {
+	public func cp(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "cp", parameters: parameter)
 	}
 	/**
@@ -1287,7 +1287,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns an recursively aggregated number of used bytes, starting at the given path.
 	 * */
-	func du(parameter: ZpfsRequest) {
+	public func du(parameter: ZpfsRequest) {
 		self.zetaPushService.publishGeneric(verb: "du", parameters: parameter)
 	}
 	/**
@@ -1296,7 +1296,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Links a file or folder to another location.
 	 * May fail if the target location is not empty.
 	 * */
-	func link(parameter: CreatedFile) {
+	public func link(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "link", parameters: parameter)
 	}
 	/**
@@ -1304,7 +1304,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of the folder's content.
 	 * */
-	func ls(parameter: FolderListingRequest) {
+	public func ls(parameter: FolderListingRequest) {
 		self.zetaPushService.publishGeneric(verb: "ls", parameters: parameter)
 	}
 	/**
@@ -1313,7 +1313,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Creates a new folder.
 	 * May fail if the target location is not empty.
 	 * */
-	func mkdir(parameter: FolderCreationRequest) {
+	public func mkdir(parameter: FolderCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "mkdir", parameters: parameter)
 	}
 	/**
@@ -1322,7 +1322,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Moves a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func mv(parameter: CreatedFile) {
+	public func mv(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "mv", parameters: parameter)
 	}
 	/**
@@ -1331,7 +1331,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * The client application calls this verb to notify that it's done uploading to the cloud.
 	 * Calling that verb MAY trigger additional events such as thumbnail/metadata creation.
 	 * */
-	func newFile(parameter: FileUploadComplete) {
+	public func newFile(parameter: FileUploadComplete) {
 		self.zetaPushService.publishGeneric(verb: "newFile", parameters: parameter)
 	}
 	/**
@@ -1340,7 +1340,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Requests an HTTP upload URL.
 	 * The URL contains temporary credentials (typically valid for a few minutes) and is meant for immediate use.
 	 * */
-	func newUploadUrl(parameter: FileUploadRequest) {
+	public func newUploadUrl(parameter: FileUploadRequest) {
 		self.zetaPushService.publishGeneric(verb: "newUploadUrl", parameters: parameter)
 	}
 	/**
@@ -1348,7 +1348,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes a file or folder (recursively).
 	 * */
-	func rm(parameter: FileRemoval) {
+	public func rm(parameter: FileRemoval) {
 		self.zetaPushService.publishGeneric(verb: "rm", parameters: parameter)
 	}
 	/**
@@ -1356,7 +1356,7 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * 
 	 * Creates a new folder and then copies the given files inside
 	 * */
-	func snapshot(parameter: SnapshotCreationRequest) {
+	public func snapshot(parameter: SnapshotCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "snapshot", parameters: parameter)
 	}
 	/**
@@ -1365,11 +1365,11 @@ public class Zpfs_s3Publisher : ZetaPushServicePublisher {
 	 * Returns information about a single file.
 	 * The entry field will be null if the path does not exist
 	 * */
-	func stat(parameter: FileStatRequest) {
+	public func stat(parameter: FileStatRequest) {
 		self.zetaPushService.publishGeneric(verb: "stat", parameters: parameter)
 	}
 	/**Updates a file's metadata*/
-	func updateMeta(parameter: FileMetaUpdate) {
+	public func updateMeta(parameter: FileMetaUpdate) {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
@@ -1456,7 +1456,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Copies a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func cp(parameter: CreatedFile) {
+	public func cp(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "cp", parameters: parameter)
 	}
 	/**
@@ -1464,7 +1464,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns an recursively aggregated number of used bytes, starting at the given path.
 	 * */
-	func du(parameter: ZpfsRequest) {
+	public func du(parameter: ZpfsRequest) {
 		self.zetaPushService.publishGeneric(verb: "du", parameters: parameter)
 	}
 	/**
@@ -1473,7 +1473,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Links a file or folder to another location.
 	 * May fail if the target location is not empty.
 	 * */
-	func link(parameter: CreatedFile) {
+	public func link(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "link", parameters: parameter)
 	}
 	/**
@@ -1481,7 +1481,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of the folder's content.
 	 * */
-	func ls(parameter: FolderListingRequest) {
+	public func ls(parameter: FolderListingRequest) {
 		self.zetaPushService.publishGeneric(verb: "ls", parameters: parameter)
 	}
 	/**
@@ -1490,7 +1490,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Creates a new folder.
 	 * May fail if the target location is not empty.
 	 * */
-	func mkdir(parameter: FolderCreationRequest) {
+	public func mkdir(parameter: FolderCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "mkdir", parameters: parameter)
 	}
 	/**
@@ -1499,7 +1499,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Moves a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func mv(parameter: CreatedFile) {
+	public func mv(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "mv", parameters: parameter)
 	}
 	/**
@@ -1508,7 +1508,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * The client application calls this verb to notify that it's done uploading to the cloud.
 	 * Calling that verb MAY trigger additional events such as thumbnail/metadata creation.
 	 * */
-	func newFile(parameter: FileUploadComplete) {
+	public func newFile(parameter: FileUploadComplete) {
 		self.zetaPushService.publishGeneric(verb: "newFile", parameters: parameter)
 	}
 	/**
@@ -1517,7 +1517,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Requests an HTTP upload URL.
 	 * The URL contains temporary credentials (typically valid for a few minutes) and is meant for immediate use.
 	 * */
-	func newUploadUrl(parameter: FileUploadRequest) {
+	public func newUploadUrl(parameter: FileUploadRequest) {
 		self.zetaPushService.publishGeneric(verb: "newUploadUrl", parameters: parameter)
 	}
 	/**
@@ -1525,7 +1525,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes a file or folder (recursively).
 	 * */
-	func rm(parameter: FileRemoval) {
+	public func rm(parameter: FileRemoval) {
 		self.zetaPushService.publishGeneric(verb: "rm", parameters: parameter)
 	}
 	/**
@@ -1533,7 +1533,7 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Creates a new folder and then copies the given files inside
 	 * */
-	func snapshot(parameter: SnapshotCreationRequest) {
+	public func snapshot(parameter: SnapshotCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "snapshot", parameters: parameter)
 	}
 	/**
@@ -1542,11 +1542,11 @@ public class Zpfs_hdfsPublisher : ZetaPushServicePublisher {
 	 * Returns information about a single file.
 	 * The entry field will be null if the path does not exist
 	 * */
-	func stat(parameter: FileStatRequest) {
+	public func stat(parameter: FileStatRequest) {
 		self.zetaPushService.publishGeneric(verb: "stat", parameters: parameter)
 	}
 	/**Updates a file's metadata*/
-	func updateMeta(parameter: FileMetaUpdate) {
+	public func updateMeta(parameter: FileMetaUpdate) {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
@@ -1636,7 +1636,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Copies a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func cp(parameter: CreatedFile) {
+	public func cp(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "cp", parameters: parameter)
 	}
 	/**
@@ -1644,7 +1644,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns an recursively aggregated number of used bytes, starting at the given path.
 	 * */
-	func du(parameter: ZpfsRequest) {
+	public func du(parameter: ZpfsRequest) {
 		self.zetaPushService.publishGeneric(verb: "du", parameters: parameter)
 	}
 	/**
@@ -1653,7 +1653,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Links a file or folder to another location.
 	 * May fail if the target location is not empty.
 	 * */
-	func link(parameter: CreatedFile) {
+	public func link(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "link", parameters: parameter)
 	}
 	/**
@@ -1661,7 +1661,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Returns a paginated list of the folder's content.
 	 * */
-	func ls(parameter: FolderListingRequest) {
+	public func ls(parameter: FolderListingRequest) {
 		self.zetaPushService.publishGeneric(verb: "ls", parameters: parameter)
 	}
 	/**
@@ -1670,7 +1670,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Creates a new folder.
 	 * May fail if the target location is not empty.
 	 * */
-	func mkdir(parameter: FolderCreationRequest) {
+	public func mkdir(parameter: FolderCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "mkdir", parameters: parameter)
 	}
 	/**
@@ -1679,7 +1679,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Moves a file or folder (recursively) to a new location.
 	 * May fail if the target location is not empty.
 	 * */
-	func mv(parameter: CreatedFile) {
+	public func mv(parameter: CreatedFile) {
 		self.zetaPushService.publishGeneric(verb: "mv", parameters: parameter)
 	}
 	/**
@@ -1688,7 +1688,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * The client application calls this verb to notify that it's done uploading to the cloud.
 	 * Calling that verb MAY trigger additional events such as thumbnail/metadata creation.
 	 * */
-	func newFile(parameter: FileUploadComplete) {
+	public func newFile(parameter: FileUploadComplete) {
 		self.zetaPushService.publishGeneric(verb: "newFile", parameters: parameter)
 	}
 	/**
@@ -1697,7 +1697,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Requests an HTTP upload URL.
 	 * The URL contains temporary credentials (typically valid for a few minutes) and is meant for immediate use.
 	 * */
-	func newUploadUrl(parameter: FileUploadRequest) {
+	public func newUploadUrl(parameter: FileUploadRequest) {
 		self.zetaPushService.publishGeneric(verb: "newUploadUrl", parameters: parameter)
 	}
 	/**
@@ -1705,7 +1705,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Removes a file or folder (recursively).
 	 * */
-	func rm(parameter: FileRemoval) {
+	public func rm(parameter: FileRemoval) {
 		self.zetaPushService.publishGeneric(verb: "rm", parameters: parameter)
 	}
 	/**
@@ -1713,7 +1713,7 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * 
 	 * Creates a new folder and then copies the given files inside
 	 * */
-	func snapshot(parameter: SnapshotCreationRequest) {
+	public func snapshot(parameter: SnapshotCreationRequest) {
 		self.zetaPushService.publishGeneric(verb: "snapshot", parameters: parameter)
 	}
 	/**
@@ -1722,11 +1722,11 @@ public class Zpfs_s3compatPublisher : ZetaPushServicePublisher {
 	 * Returns information about a single file.
 	 * The entry field will be null if the path does not exist
 	 * */
-	func stat(parameter: FileStatRequest) {
+	public func stat(parameter: FileStatRequest) {
 		self.zetaPushService.publishGeneric(verb: "stat", parameters: parameter)
 	}
 	/**Updates a file's metadata*/
-	func updateMeta(parameter: FileMetaUpdate) {
+	public func updateMeta(parameter: FileMetaUpdate) {
 		self.zetaPushService.publishGeneric(verb: "updateMeta", parameters: parameter)
 	}
 }
@@ -1807,11 +1807,11 @@ open class Zpfs_s3compatListener : ZetaPushServiceListener {
  * */
 public class UserdirPublisher : ZetaPushServicePublisher {
 	/**Searches for users matching the request*/
-	func search(parameter: UserSearchRequest) {
+	public func search(parameter: UserSearchRequest) {
 		self.zetaPushService.publishGeneric(verb: "search", parameters: parameter)
 	}
 	/**Requests public data for the specified users*/
-	func userInfo(parameter: UserInfoRequest) {
+	public func userInfo(parameter: UserInfoRequest) {
 		self.zetaPushService.publishGeneric(verb: "userInfo", parameters: parameter)
 	}
 }
@@ -1866,7 +1866,7 @@ public class WeakPublisher : ZetaPushServicePublisher {
 	 * The public token has been previously made available by the controlled device, for example by displaying a QRCode.
 	 * Upon control notification, the client SDK of the controlled session is expected to re-handshake.
 	 * */
-	func control(parameter: UserControlRequest) {
+	public func control(parameter: UserControlRequest) {
 		self.zetaPushService.publishGeneric(verb: "control", parameters: parameter)
 	}
 	/**
@@ -1875,7 +1875,7 @@ public class WeakPublisher : ZetaPushServicePublisher {
 	 * Returns your current session's private token. The token field may be null, if you did not log in with this authentication.
 	 * The token can be used to log in as the same weak user another time.
 	 * */
-	func getToken() {
+	public func getToken() {
 		self.zetaPushService.publishGeneric(verb: "getToken")
 	}
 	/**
@@ -1884,7 +1884,7 @@ public class WeakPublisher : ZetaPushServicePublisher {
 	 * Releases control of a weak user session, identified by the given public token.
 	 * The weak user session must have been previously controlled by a call to 'control'.
 	 * */
-	func release(parameter: UserControlRequest) {
+	public func release(parameter: UserControlRequest) {
 		self.zetaPushService.publishGeneric(verb: "release", parameters: parameter)
 	}
 }
